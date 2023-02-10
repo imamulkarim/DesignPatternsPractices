@@ -3,7 +3,12 @@
 
 using DesignPatternsPractices.Creational.AbstractFactoryPattern;
 using DesignPatternsPractices.Creational.Builder;
+using DesignPatternsPractices.Creational.FactoryMethod.Creator;
+using DesignPatternsPractices.Creational.FactoryMethod.Product;
+using DesignPatternsPractices.Creational.ObjectPool;
 using DesignPatternsPractices.Creational.Prototype;
+using DesignPatternsPractices.Structural.Flyweight;
+using System.Buffers;
 
 #region builder pattern practice
 //https://dotnettutorials.net/lesson/builder-design-pattern-real-time-example/
@@ -57,15 +62,64 @@ using DesignPatternsPractices.Creational.Prototype;
 #endregion
 
 #region abastract factory pattern
-//https://www.dofactory.com/net/abstract-factory-design-pattern
+////https://www.dofactory.com/net/abstract-factory-design-pattern
 
-ContinentFactory america = new AmericaContinent();
-AnimalWorld world = new AnimalWorld(america);
-world.RunFoodChain();
+//ContinentFactory america = new AmericaContinent();
+//AnimalWorld world = new AnimalWorld(america);
+//world.RunFoodChain();
 
 
-ContinentFactory africa = new AfricaContinent();
-world = new AnimalWorld(africa);
-world.RunFoodChain();
+//ContinentFactory africa = new AfricaContinent();
+//world = new AnimalWorld(africa);
+//world.RunFoodChain();
 
 #endregion
+
+#region factory method
+https://www.dofactory.com/net/factory-method-design-pattern
+      //Document[] documents = new Document[2];
+      //documents[0] = new Resume();
+      //documents[1] = new Report();
+      //// Display document pages
+      //foreach (Document document in documents)
+      //{
+      //    Console.WriteLine("\n" + document.GetType().Name + "--");
+      //    foreach (Pages page in document.Pages)
+      //    {
+      //        Console.WriteLine(" " + page.GetType().Name);
+      //    }
+      //}
+      //// Wait for user
+      //Console.ReadKey();
+#endregion
+
+#region object pool
+
+//Factory fa = new Factory();
+//Student myStu = fa.GetStudent();
+//Console.WriteLine("First object");
+//Student myStu1 = fa.GetStudent();
+//Console.WriteLine("Second object");
+//Student myStu2 = fa.GetStudent();
+//Console.WriteLine("Third object");
+//Console.Read();
+
+
+//ArrayPool
+#endregion
+
+
+
+// structural pattern ***********************************
+
+
+
+ImageDisplay imageDisplay1 = new ImageDisplay("image1.jpg");
+ImageDisplay imageDisplay2 = new ImageDisplay("image1.jpg");
+ImageDisplay imageDisplay3 = new ImageDisplay("image2.jpg");
+
+Console.WriteLine(ReferenceEquals(imageDisplay1.Image, imageDisplay2.Image)); // True
+Console.WriteLine(ReferenceEquals(imageDisplay1.Image, imageDisplay3.Image)); // False
+
+
+Console.Read();
