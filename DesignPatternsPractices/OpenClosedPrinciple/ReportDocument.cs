@@ -15,7 +15,7 @@ namespace DesignPatternsPractices.OpenClosedPrinciple
         public string ReportFooter { get; set; } 
     }
 
-    interface ReportDocument
+    public interface ReportDocument
     {
         ReportFile GenerateReport();
     }
@@ -35,5 +35,30 @@ namespace DesignPatternsPractices.OpenClosedPrinciple
             return new ReportFile { ReportBody = "Test Excel report", ReportFooter = "f1", ReportHeader = "h1", ReportName = "excel" };
         }
     }
+
+    public enum ReportType
+    {
+        pdf, excel
+    }
+
+    public class ReportCreatorFactory
+    {
+        //ReportFile GenerateReport(string reportType);
+        private static Dictionary<int, ReportDocument>
+            reportsDoc = new Dictionary<int, ReportDocument>();
+
+        public ReportCreatorFactory()
+        {
+            reportsDoc.Add((int)ReportType.excel, new ExcelReport());
+            reportsDoc.Add((int)ReportType.pdf, new PdfReport());
+        }
+
+        public static ReportDocument GetReportDocuemnt(ReportType reportType)
+        {
+            return reportsDoc[(int)reportType];
+        }
+    }
+
+    
 
 }
