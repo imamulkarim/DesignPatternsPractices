@@ -128,7 +128,7 @@ https://www.dofactory.com/net/factory-method-design-pattern
 
 
 
- ImageDisplay imageDisplay1 = new ImageDisplay("image1.jpg");
+ImageDisplay imageDisplay1 = new ImageDisplay("image1.jpg");
 ImageDisplay imageDisplay2 = new ImageDisplay("image1.jpg");
 ImageDisplay imageDisplay3 = new ImageDisplay("image2.jpg");
 
