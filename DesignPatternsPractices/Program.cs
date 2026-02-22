@@ -5,6 +5,7 @@ using DesignPatternsPractices.Creational.AbstractFactoryPattern;
 using DesignPatternsPractices.Creational.Builder;
 using DesignPatternsPractices.Creational.FactoryMethod.Creator;
 using DesignPatternsPractices.Creational.FactoryMethod.Product;
+using DesignPatternsPractices.Creational.FactoryPattern;
 using DesignPatternsPractices.Creational.ObjectPool;
 using DesignPatternsPractices.Creational.Prototype;
 using DesignPatternsPractices.Structural.Flyweight;
@@ -108,13 +109,26 @@ https://www.dofactory.com/net/factory-method-design-pattern
 //ArrayPool
 #endregion
 
+#region Factory Pattern
+//ICreditCard cardDetails = CreditCardFactory.GetCreditCard("Platinum");
 
+//if (cardDetails != null)
+//{
+//    Console.WriteLine("CardType : " + cardDetails.GetCardType());
+//    Console.WriteLine("CreditLimit : " + cardDetails.GetCreditLimit());
+//    Console.WriteLine("AnnualCharge :" + cardDetails.GetAnnualCharge());
+//}
+//else
+//{
+//    Console.Write("Invalid Card Type");
+//}
+#endregion
 
 // structural pattern ***********************************
 
 
 
-ImageDisplay imageDisplay1 = new ImageDisplay("image1.jpg");
+ ImageDisplay imageDisplay1 = new ImageDisplay("image1.jpg");
 ImageDisplay imageDisplay2 = new ImageDisplay("image1.jpg");
 ImageDisplay imageDisplay3 = new ImageDisplay("image2.jpg");
 
