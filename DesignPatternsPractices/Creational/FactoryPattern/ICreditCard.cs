@@ -1,7 +1,7 @@
 ﻿
 namespace DesignPatternsPractices.Creational.FactoryPattern;
 
-internal interface ICreditCard
+public interface ICreditCard
 {
     string GetCardType();
     int GetCreditLimit();

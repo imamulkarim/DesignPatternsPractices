@@ -2,6 +2,7 @@
 //using System;
 
 using DesignPatternsPractices.Creational.AbstractFactoryPattern;
+using DesignPatternsPractices.Creational.AbstractFactoryPattern2;
 using DesignPatternsPractices.Creational.Builder;
 using DesignPatternsPractices.Creational.FactoryMethod.Creator;
 using DesignPatternsPractices.Creational.FactoryMethod.Product;
@@ -74,6 +75,11 @@ using System.Buffers;
 //world = new AnimalWorld(africa);
 //world.RunFoodChain();
 
+#endregion
+
+#region abastract factory pattern 2
+IUIFactory uIFactory = UIFactory.GetInstance("windows");
+uIFactory.CreateButton().Paint();
 #endregion
 
 #region factory method
