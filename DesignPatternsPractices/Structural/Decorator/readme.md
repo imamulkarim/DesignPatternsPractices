@@ -1,6 +1,7 @@
-﻿The Decorator Design Pattern in C# is a structural design pattern that allows you to dynamically add new behaviors or responsibilities to an object at runtime without altering its existing structure. It acts as a wrapper wrapper around a core class, adhering strictly to the <b> Open/Closed Principle </b> (classes should be open for extension but closed for modification).
+﻿# Decorator Design Pattern
+The Decorator Design Pattern in C# is a structural design pattern that allows you to dynamically add new behaviors or responsibilities to an object at runtime without altering its existing structure. It acts as a wrapper wrapper around a core class, adhering strictly to the <b> Open/Closed Principle </b> (classes should be open for extension but closed for modification).
 
-# Structure of the Pattern
+## Structure of the Pattern
 Rather than relying on deep, complex inheritance trees that cause a "class explosion," 
 the pattern favors composition. It consists of four distinct architectural elements:
 
