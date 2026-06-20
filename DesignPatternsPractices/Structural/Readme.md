@@ -8,89 +8,92 @@ That means the Flyweight Design Pattern is used when there is a need to create m
 ## Example to Understand Flyweight Design Pattern in C# ##
 
 Please look at the following image to better understand the Flyweight Design Pattern. As you can see in the following image, we created and stored one circle object in the Cache. Here, the circle object we stored in the cache has no color. Suppose, let’s say, we have to create 90000 circle objects in green and 90000 circle objects in blue. Again, we must create 80000 circle objects, which are orange, and 70000 circle objects in black. If you notice, all the circle object shapes are the same, only the color changes.
-
+````````
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                    FLYWEIGHT PATTERN - VISUAL OVERVIEW                     ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
 ┌──────────────────────────────────────────────────────────────────────────┐
-│ PROBLEM: Creating 340,000 Circle Objects (Without Flyweight)            │
+│ PROBLEM: Creating 340,000 Circle Objects (Without Flyweight)             │
 ├──────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
 │  90,000 Green    90,000 Blue     80,000 Orange    70,000 Black           │
 │  Circles         Circles         Circles          Circles                │
 │     │                │               │                │                  │
 │     ▼                ▼               ▼                ▼                  │
-│  [O○o] (Green)  [O●o] (Blue)   [O◆o] (Orange)  [O■o] (Black)             │
-│  [O○o] (Green)  [O●o] (Blue)   [O◆o] (Orange)  [O■o] (Black)             │
-│  [O○o] (Green)  [O●o] (Blue)   [O◆o] (Orange)  [O■o] (Black)             │
+│  [O○o] (Green)  [O●o] (Blue)   [O◆o] (Orange)  [O■o] (Black)            │
+│  [O○o] (Green)  [O●o] (Blue)   [O◆o] (Orange)  [O■o] (Black)            │
+│  [O○o] (Green)  [O●o] (Blue)   [O◆o] (Orange)  [O■o] (Black)            │
 │  ...             ...            ...              ...                     │
 │                                                                          │
 │  MEMORY: 340,000 separate objects × size per object = HIGH MEMORY        │
 └──────────────────────────────────────────────────────────────────────────┘
+````````
 
 As per the Flyweight Design Pattern, we can improve the performance by creating the circle object only once time and reusing that circle object many times to create different types of colors. Suppose you want to create 90000 circle objects with green color, then what you can do is. Instead of creating new circle objects every time and filling them with green color, you can get the circle object from the Cache and fill it with green color. In the same way, you can create 90000 circle objects with green color. So, in this way, we can improve the application’s performance using the Flyweight Design Pattern in C#.
 
 ## In Flyweight Design Pattern, there are two states, i.e., Intrinsic and Extrinsic.
 
+````````
 
 ┌──────────────────────────────────────────────────────────────────────────┐
 │ SOLUTION: Flyweight Factory + Shared Shape Object                        │
 ├──────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
-│     ┌─────────────────────────┐                                        │
-│     │ FlyweightFactory        │   ◄── Manages Cache                   │
-│     │ Cache: <Key, Flyweight> │                                        │
-│     └───────────┬─────────────┘                                        │
-│                 │                                                       │
-│    ┌────────────┴────────────┐                                        │
-│    │                         │                                        │
-│    ▼                         ▼                                        │
-│ ┌──────────────┐         ┌──────────────┐                            │
-│ │ Circle Shape │         │ Circle Shape │      (INTRINSIC STATE)     │
-│ │ (Flyweight)  │         │ (Flyweight)  │      Shared, immutable     │
-│ │              │         │              │      • Radius              │
-│ │ Radius: 5    │         │ Radius: 10   │      • Shape              │
-│ └────────┬─────┘         └────────┬─────┘      • Design             │
-│          │                       │                                    │
-│ ┌────────┴───────────────────────┴────────┐                         │
-│ │ draw(x, y, color) - EXTRINSIC STATE    │                         │
-│ │ Called 340,000 times with different:   │                         │
-│ │ • color (Green, Blue, Orange, Black)  │                         │
-│ │ • x, y coordinates                    │                         │
-│ │ • z-order, rotation, scale (optional) │                         │
-│ └────────────────────────────────────────┘                         │
+│     ┌─────────────────────────┐                                          │
+│     │ FlyweightFactory        │   ◄── Manages Cache                      │
+│     │ Cache: <Key, Flyweight> │                                          │
+│     └───────────┬─────────────┘                                          │
+│                 │                                                        │
+│    ┌────────────┴────────────┐                                           │
+│    │                         │                                           │
+│    ▼                         ▼                                           │
+│ ┌──────────────┐         ┌──────────────┐                                │
+│ │ Circle Shape │         │ Circle Shape │      (INTRINSIC STATE)         │
+│ │ (Flyweight)  │         │ (Flyweight)  │      Shared, immutable         │
+│ │              │         │              │      • Radius                  │
+│ │ Radius: 5    │         │ Radius: 10   │      • Shape                   │
+│ └────────┬─────┘         └────────┬─────┘      • Design                  │
+│          │                       │                                       │
+│ ┌────────┴───────────────────────┴────────┐                              │
+│ │ draw(x, y, color) - EXTRINSIC STATE    │                               │
+│ │ Called 340,000 times with different:   │                               │
+│ │ • color (Green, Blue, Orange, Black)  │                                │
+│ │ • x, y coordinates                    │                                │
+│ │ • z-order, rotation, scale (optional) │                                │
+│ └────────────────────────────────────────┘                               │
 │                                                                          │
-│  MEMORY: ~2 Flyweight objects + 340,000 lightweight context calls     │
-│  RESULT: Dramatic memory reduction & performance improvement         │
-└──────────────────────────────────────────────────────────────────────┘
+│  MEMORY: ~2 Flyweight objects + 340,000 lightweight context calls        │
+│  RESULT: Dramatic memory reduction & performance improvement             │
+└──────────────────────────────────────────────────────────────────────────┘
 
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                          CODE STRUCTURE PATTERN                            ║
 ╠════════════════════════════════════════════════════════════════════════════╣
 ║                                                                            ║
-║  public interface IFlyweight {                                            ║
-║      void Draw(int x, int y, Color color);  // Extrinsic params         ║
-║  }                                                                        ║
+║  public interface IFlyweight {                                             ║
+║      void Draw(int x, int y, Color color);  // Extrinsic params            ║
+║  }                                                                         ║
 ║                                                                            ║
-║  public class Concreteflyweight : IFlyweight {                           ║
-║      private readonly int radius;  // Intrinsic (shared) state          ║
-║      public ConcreteCircle(int r) => radius = r;                        ║
-║      public void Draw(int x, int y, Color color)                        ║
-║          => Console.WriteLine($"Circle at {x},{y} Color:{color}");      ║
-║  }                                                                        ║
+║  public class Concreteflyweight : IFlyweight {                             ║
+║      private readonly int radius;  // Intrinsic (shared) state             ║
+║      public ConcreteCircle(int r) => radius = r;                           ║
+║      public void Draw(int x, int y, Color color)                           ║
+║          => Console.WriteLine($"Circle at {x},{y} Color:{color}");         ║
+║  }                                                                         ║
 ║                                                                            ║
-║  public class FlyweightFactory {                                         ║
-║      private Dictionary<string, IFlyweight> cache = new();              ║
-║      public IFlyweight GetCircle(int radius) {                          ║
-║          string key = radius.ToString();                                ║
-║          if (!cache.ContainsKey(key))                                   ║
-║              cache[key] = new ConcreteCircle(radius);                   ║
-║          return cache[key];  // Return cached instance                 ║
-║      }                                                                    ║
-║  }                                                                        ║
+║  public class FlyweightFactory {                                           ║
+║      private Dictionary<string, IFlyweight> cache = new();                 ║
+║      public IFlyweight GetCircle(int radius) {                             ║
+║          string key = radius.ToString();                                   ║
+║          if (!cache.ContainsKey(key))                                      ║
+║              cache[key] = new ConcreteCircle(radius);                      ║
+║          return cache[key];  // Return cached instance                     ║
+║      }                                                                     ║
+║  }                                                                         ║
 ║                                                                            ║
 ╚════════════════════════════════════════════════════════════════════════════╝
+````````
 
 ## The following are the three components involved in the Flyweight Design Pattern.
 
